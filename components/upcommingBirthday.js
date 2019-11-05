@@ -19,9 +19,10 @@ export default class SliderEntry extends Component {
       parallaxProps,
       even
     } = this.props;
+
     return parallax ? (
       <ParallaxImage
-        source={illustration}
+        source={{ uri: illustration }}
         containerStyle={[
           styles.imageContainer,
           even ? styles.imageContainerEven : {}
@@ -33,26 +34,22 @@ export default class SliderEntry extends Component {
         {...parallaxProps}
       />
     ) : (
-      <Image
-        source={illustration}
-        // style={styles.image}
-        style={{ borderRadius: 64, marginBottom: 5 }}
-      />
+      <Image source={{ uri: illustration }} style={styles.image} />
     );
   }
 
   render() {
     const {
-      data: { name, birthday },
+      data: { title, subtitle },
       even
     } = this.props;
 
-    const uppercaseTitle = name ? (
+    const uppercaseTitle = title ? (
       <Text
         style={[styles.title, even ? styles.titleEven : {}]}
         numberOfLines={2}
       >
-        {name.toUpperCase()}
+        {title.toUpperCase()}
       </Text>
     ) : (
       false
@@ -63,30 +60,27 @@ export default class SliderEntry extends Component {
         activeOpacity={1}
         style={styles.slideInnerContainer}
         onPress={() => {
-          alert(`You've clicked '${name}'`);
+          alert(`You've clicked '${title}'`);
         }}
       >
         <View style={styles.shadow} />
         <View
-          style={[
-            styles.imageContainer,
-            {
-              backgroundColor: "#E7F4FD",
-              justifyContent: "center",
-              alignItems: "center"
-            }
-          ]}
+          style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
         >
           {this.image}
-          <Text>SILVER</Text>
+          <View
+            style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]}
+          />
         </View>
-        <View style={[styles.textContainer, { alignItems: "center" }]}>
+        <View
+          style={[styles.textContainer, even ? styles.textContainerEven : {}]}
+        >
           {uppercaseTitle}
           <Text
             style={[styles.subtitle, even ? styles.subtitleEven : {}]}
             numberOfLines={2}
           >
-            {birthday}
+            {subtitle}
           </Text>
         </View>
       </TouchableOpacity>

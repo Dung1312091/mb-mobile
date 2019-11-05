@@ -7,9 +7,9 @@ import {
   KeyboardAvoidingView,
   SafeAreaView
 } from "react-native";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Provider } from "react-redux";
 import { createStackNavigator } from "react-navigation-stack";
 import AppIntroSlider from "react-native-app-intro-slider";
@@ -59,16 +59,14 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   const { routeName } = navigation.state;
   let IconComponent = Ionicons;
   let iconName;
-  if (routeName === 'Home') {
+  if (routeName === "Home") {
     iconName = "ios-home";
     // We want to add badges to home tab icon
-  } else if (routeName === 'Leads') {
+  } else if (routeName === "Leads") {
     iconName = "ios-person";
-  }
-  else if (routeName === 'Customer') {
+  } else if (routeName === "Customer") {
     iconName = "ios-people";
-  }
-  else if (routeName === 'Policies') {
+  } else if (routeName === "Policies") {
     iconName = "ios-document";
   }
 
@@ -77,7 +75,6 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 };
 const AppStack = createBottomTabNavigator(
   {
-  
     Home: {
       screen: screens.Dashboard
     },
@@ -94,12 +91,12 @@ const AppStack = createBottomTabNavigator(
   {
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) =>
-        getTabBarIcon(navigation, focused, tintColor),
+        getTabBarIcon(navigation, focused, tintColor)
     }),
     tabBarOptions: {
-      activeTintColor: '#349AD0',
-      inactiveTintColor: 'gray',
-    },
+      activeTintColor: "#349AD0",
+      inactiveTintColor: "gray"
+    }
   }
 );
 const AuthStack = createStackNavigator({
@@ -119,7 +116,7 @@ const AppNavigator = createAppContainer(
 );
 
 export default function App() {
-  const [showRealApp, setShowRealApp] = useState(false);
+  const [showRealApp, setShowRealApp] = useState(true);
   const renderItem = ({ item }) => {
     return (
       <View style={styles.mainContent}>
