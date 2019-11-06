@@ -61,7 +61,15 @@ export default class SliderEntry extends Component {
     return (
       <TouchableOpacity
         activeOpacity={1}
-        style={styles.slideInnerContainer}
+        style={
+          (styles.slideInnerContainer,
+          {
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.8,
+            shadowRadius: 1
+          })
+        }
         onPress={() => {
           alert(`You've clicked '${name}'`);
         }}
@@ -71,7 +79,7 @@ export default class SliderEntry extends Component {
           style={[
             styles.imageContainer,
             {
-              backgroundColor: "#E7F4FD",
+              backgroundColor: "#5cbae2b8",
               justifyContent: "center",
               alignItems: "center"
             }

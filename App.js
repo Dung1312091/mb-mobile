@@ -134,7 +134,7 @@ export default function App() {
   return (
     <Provider store={store}>
       {showRealApp ? (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, color: "#000" }}>
           <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
             <AppNavigator />
           </KeyboardAvoidingView>

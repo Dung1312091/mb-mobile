@@ -87,17 +87,22 @@ class RenderCarouselItem extends PureComponent {
     return (
       <TouchableOpacity
         activeOpacity={1}
-        style={{ backgroundColor: "#E5E5E5", paddingTop: 10, paddingBottom: 10, borderRadius: 8 }}
+        style={{
+          backgroundColor: "#E5E5E5",
+          paddingTop: 10,
+          paddingBottom: 10,
+          borderRadius: 8
+        }}
         onPress={() => {
           alert(`You've clicked '${name}'`);
         }}
       >
         <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-          <View style={{marginLeft: 10, marginRight: 10}}>
+          <View style={{ marginLeft: 10, marginRight: 10 }}>
             <Image source={require("../../assets/email.png")} />
           </View>
-          <View >
-            <Text style={{fontSize: 18, fontWeight: "600"}}>9:00</Text>
+          <View>
+            <Text style={{ fontSize: 18, fontWeight: "600" }}>9:00</Text>
             <Text>Email to Mr. Khai</Text>
             <Text>Lead - Mr. Hoàn Văn Khải</Text>
           </View>
@@ -123,7 +128,7 @@ class Activity extends PureComponent {
       <View style={styles.container}>
         <SnapCarouselSlider
           number={1}
-          title="Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots"
+          title="TODAY"
           renderItemFunc={renderItemWithParallax}
           entries={entries}
         />

@@ -14,12 +14,7 @@ const CustomSnapCarousel = memo(
 
     // Do not render examples on Android; because of the zIndex bug, they won't work as is
     return !IS_ANDROID ? (
-      <View
-        style={[
-          styles.exampleContainer,
-          isEven ? styles.exampleContainerDark : styles.exampleContainerLight
-        ]}
-      >
+      <View style={[styles.exampleContainer]}>
         <Text style={[styles.title, isEven ? {} : styles.titleDark]}>
           Coming Birthdays
         </Text>
@@ -43,36 +38,34 @@ const CustomSnapCarousel = memo(
   }
 );
 
-const SnapCarouselSlider = memo(({number, title, renderItemFunc,entries }) => {
-  const sliderRef = useRef(null)
-  return (
-    <View style={styles.exampleContainer}>
-      <Text style={styles.title}>{`Example ${number}`}</Text>
-      <Text style={styles.subtitle}>{title}</Text>
-      <Carousel
-        ref={sliderRef}
-        data={entries}
-        renderItem={renderItemFunc}
-        sliderWidth={sliderWidth}
-        itemWidth={itemWidth}
-        hasParallaxImages={true}
-        firstItem={SLIDER_1_FIRST_ITEM} 
-        inactiveSlideScale={0.94}
-        inactiveSlideOpacity={0.7}
-        // inactiveSlideShift={20}
-        containerCustomStyle={styles.slider}
-        contentContainerCustomStyle={styles.sliderContentContainer}
-        loop={true}
-        loopClonesPerSide={2}
-        autoplay={true}
-        autoplayDelay={500}
-        autoplayInterval={3000}
-      />
-    </View>
-  );
-})
-export  {
-  CustomSnapCarousel,
-  SnapCarouselSlider
-
-};
+const SnapCarouselSlider = memo(
+  ({ number, title, renderItemFunc, entries }) => {
+    const sliderRef = useRef(null);
+    return (
+      <View style={styles.exampleContainer}>
+        <Text style={styles.title}>{`Example ${number}`}</Text>
+        <Text style={styles.subtitle}>{title}</Text>
+        <Carousel
+          ref={sliderRef}
+          data={entries}
+          renderItem={renderItemFunc}
+          sliderWidth={sliderWidth}
+          itemWidth={itemWidth}
+          hasParallaxImages={true}
+          firstItem={SLIDER_1_FIRST_ITEM}
+          inactiveSlideScale={0.94}
+          inactiveSlideOpacity={0.7}
+          // inactiveSlideShift={20}
+          containerCustomStyle={styles.slider}
+          contentContainerCustomStyle={styles.sliderContentContainer}
+          loop={true}
+          loopClonesPerSide={2}
+          autoplay={true}
+          autoplayDelay={500}
+          autoplayInterval={3000}
+        />
+      </View>
+    );
+  }
+);
+export { CustomSnapCarousel, SnapCarouselSlider };

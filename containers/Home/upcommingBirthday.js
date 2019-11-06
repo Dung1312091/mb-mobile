@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { View } from "react-native";
 import styles from "../../styles/index.style";
 import SliderEntry from "../../components/sliderEntry";
-import {CustomSnapCarousel} from "../../components/customSnapCarousel";
+import { CustomSnapCarousel } from "../../components/customSnapCarousel";
 export const data = [
   {
     name: "Alice",
@@ -61,7 +61,7 @@ function renderLightItem({ item, index }) {
 class UpcommingBirthday extends PureComponent {
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <CustomSnapCarousel
           number={6}
           refNumber={2}

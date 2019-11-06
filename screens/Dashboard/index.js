@@ -1,19 +1,218 @@
 import React, { PureComponent } from "react";
-import { SafeAreaView, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  Dimensions,
+  Image,
+  ListView,
+  PixelRatio,
+  StyleSheet,
+  Text,
+  View
+} from "react-native";
+import ParallaxScrollView from "react-native-parallax-scroll-view";
+import Icon from "react-native-vector-icons/FontAwesome";
 import SnapCarousel from "../../examples/SnapCarousel";
-import {UpcommingBirthday, Activity} from "../../containers/Home";
+import { UpcommingBirthday, Activity } from "../../containers/Home";
+import Talks from "../../examples/HeaderParalax";
 class DashBoard extends React.Component {
   render() {
     return (
-      <SafeAreaView>
-        <ScrollView style={{backgroundColor: "#5BC5F2"}}>
-          <UpcommingBirthday />
-          <Activity/>
-          {/* <SnapCarousel/> */}
-        </ScrollView>
-      </SafeAreaView>
+      // <ScrollView style={{ backgroundColor: "#fafbfb" }}>
+      <ParallaxScrollView
+        onScroll={() => {}}
+        headerBackgroundColor="rgba(0,0,20,0.5)"
+        backgroundColor="rgba(0,0,20,0.8)"
+        stickyHeaderHeight={STICKY_HEADER_HEIGHT}
+        parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
+        backgroundSpeed={10}
+        renderBackground={() => (
+          <View key="background">
+            <Image
+              source={require("../../assets/mbbg.jpg")}
+              style={{
+                width: window.width,
+                height: PARALLAX_HEADER_HEIGHT
+              }}
+            />
+            <View
+              style={{
+                position: "absolute",
+                top: 0,
+                width: window.width,
+                height: PARALLAX_HEADER_HEIGHT
+              }}
+              AAAA
+            />
+          </View>
+        )}
+        renderForeground={() => (
+          <View key="parallax-header" style={styles.parallaxHeader}>
+            <View style={styles.menu}>
+              <View style={styles.menuImg}>
+                <Image
+                  source={require("../../assets/calendar.png")}
+                  style={{ width: 26, height: 26 }}
+                ></Image>
+              </View>
+              <Text style={styles.menuText}>Calendar</Text>
+            </View>
+            <View style={styles.menu}>
+              <View style={styles.menuImg}>
+                <Image
+                  source={require("../../assets/calendar.png")}
+                  style={{ width: 26, height: 26 }}
+                ></Image>
+              </View>
+              <Text style={styles.menuText}>Calendar</Text>
+            </View>
+            <View style={styles.menu}>
+              <View style={styles.menuImg}>
+                <Image
+                  source={require("../../assets/calendar.png")}
+                  style={{ width: 26, height: 26 }}
+                ></Image>
+              </View>
+              <Text style={styles.menuText}>Calendar</Text>
+            </View>
+            <View style={styles.menu}>
+              <View style={styles.menuImg}>
+                <Image
+                  source={require("../../assets/calendar.png")}
+                  style={{ width: 26, height: 26 }}
+                ></Image>
+              </View>
+              <Text style={styles.menuText}>Calendar</Text>
+            </View>
+          </View>
+        )}
+        renderStickyHeader={() => (
+          <View key="sticky-header" style={styles.stickySection}>
+            <Text style={styles.stickySectionText}>Hello Quang Dung</Text>
+          </View>
+        )}
+        renderFixedHeader={() => (
+          <View key="fixed-header" style={styles.fixedSection}>
+            <Text
+              style={styles.fixedSectionText}
+              onPress={() => this.refs.ListView.scrollTo({ x: 0, y: 0 })}
+            >
+              <Icon name="bell" size={18} color="#fff" light />
+            </Text>
+            <Text
+              style={(styles.fixedSectionText, { marginLeft: 25 })}
+              onPress={() => this.refs.ListView.scrollTo({ x: 0, y: 0 })}
+            >
+              <Icon name="power-off" size={18} color="#fff" light />
+            </Text>
+          </View>
+        )}
+      >
+        <UpcommingBirthday />
+        <Activity />
+      </ParallaxScrollView>
     );
   }
 }
+const window = Dimensions.get("window");
+
+const AVATAR_SIZE = 120;
+const ROW_HEIGHT = 60;
+const PARALLAX_HEADER_HEIGHT = 180;
+const STICKY_HEADER_HEIGHT = 60;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+    // backgroundColor: "rgba(0,0,40,0.5)"
+  },
+  background: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: window.width,
+    height: PARALLAX_HEADER_HEIGHT
+  },
+  stickySection: {
+    height: STICKY_HEADER_HEIGHT,
+    width: window.width,
+    position: "relative",
+    justifyContent: "center"
+    // backgroundColor: "rgba(0,0,0,0.5)"
+  },
+  stickySectionText: {
+    color: "white",
+    fontSize: 20
+  },
+  fixedSection: {
+    position: "absolute",
+    height: STICKY_HEADER_HEIGHT,
+    top: 0,
+    width: window.width,
+    flexDirection: "row",
+    backgroundColor: "rgba(0,0,20,0.5)",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingRight: 10
+  },
+  fixedSectionText: {
+    color: "#999",
+    fontSize: 20
+  },
+  parallaxHeader: {
+    alignItems: "center",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingTop: 50
+  },
+  avatar: {
+    marginBottom: 10,
+    borderRadius: AVATAR_SIZE / 2
+  },
+  sectionSpeakerText: {
+    color: "white",
+    fontSize: 24,
+    paddingVertical: 5
+  },
+  sectionTitleText: {
+    color: "white",
+    fontSize: 18,
+    paddingVertical: 5
+  },
+  row: {
+    overflow: "hidden",
+    paddingHorizontal: 10,
+    height: ROW_HEIGHT,
+    backgroundColor: "white",
+    borderColor: "#ccc",
+    borderBottomWidth: 1,
+    justifyContent: "center"
+  },
+  rowText: {
+    fontSize: 20
+  },
+  menu: {
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  menuImg: {
+    width: 46,
+    height: 46,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderColor: "#5BC5F2",
+    borderWidth: 1,
+    borderRadius: 16
+  },
+  menuText: {
+    fontSize: 14,
+    marginTop: 8,
+    color: "#fff",
+    textTransform: "uppercase",
+    fontWeight: "600"
+  }
+});
 
 export default DashBoard;
