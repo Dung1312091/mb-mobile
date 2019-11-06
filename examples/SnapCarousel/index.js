@@ -240,14 +240,14 @@ class SnapCarousel extends React.Component {
             scrollEventThrottle={200}
             directionalLockEnabled={true}
           >
-            {/* {example1}
+             {example1}
             {example2}
             {example3}
             {example4}
-            {example5} */}
+            {example5} 
             {example6}
-            {/* {example7}
-            {example8} */}
+             {example7}
+            {example8} 
           </ScrollView>
         </View>
       </SafeAreaView>

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useRef } from "react";
 import { Platform, View, Text } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import { ENTRIES1, ENTRIES2 } from "../examples/SnapCarousel/entries";
@@ -7,7 +7,7 @@ import { sliderWidth, itemWidth } from "../styles/sliderEntry.style";
 import styles from "../styles/index.style";
 
 const IS_ANDROID = Platform.OS === "android";
-
+const SLIDER_1_FIRST_ITEM = 1;
 const CustomSnapCarousel = memo(
   ({ number, refNumber, renderItemFunc, entries }) => {
     const isEven = refNumber % 2 === 0;
@@ -42,4 +42,37 @@ const CustomSnapCarousel = memo(
     );
   }
 );
-export default CustomSnapCarousel;
+
+const SnapCarouselSlider = memo(({number, title, renderItemFunc,entries }) => {
+  const sliderRef = useRef(null)
+  return (
+    <View style={styles.exampleContainer}>
+      <Text style={styles.title}>{`Example ${number}`}</Text>
+      <Text style={styles.subtitle}>{title}</Text>
+      <Carousel
+        ref={sliderRef}
+        data={entries}
+        renderItem={renderItemFunc}
+        sliderWidth={sliderWidth}
+        itemWidth={itemWidth}
+        hasParallaxImages={true}
+        firstItem={SLIDER_1_FIRST_ITEM} 
+        inactiveSlideScale={0.94}
+        inactiveSlideOpacity={0.7}
+        // inactiveSlideShift={20}
+        containerCustomStyle={styles.slider}
+        contentContainerCustomStyle={styles.sliderContentContainer}
+        loop={true}
+        loopClonesPerSide={2}
+        autoplay={true}
+        autoplayDelay={500}
+        autoplayInterval={3000}
+      />
+    </View>
+  );
+})
+export  {
+  CustomSnapCarousel,
+  SnapCarouselSlider
+
+};
