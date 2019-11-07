@@ -11,25 +11,29 @@ import {
   View
 } from "react-native";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
+import { Badge } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import SnapCarousel from "../../examples/SnapCarousel";
 import { UpcommingBirthday, Activity } from "../../containers/Home";
 import Talks from "../../examples/HeaderParalax";
 class DashBoard extends React.Component {
+  scrollEvent = e => {
+    console.log(e);
+  };
   render() {
     return (
       // <ScrollView style={{ backgroundColor: "#fafbfb" }}>
       <ParallaxScrollView
         onScroll={() => {}}
-        headerBackgroundColor="rgba(0,0,20,0.5)"
-        backgroundColor="rgba(0,0,20,0.8)"
+        headerBackgroundColor="rgba(0,0,50,0.5)"
         stickyHeaderHeight={STICKY_HEADER_HEIGHT}
         parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
         backgroundSpeed={10}
+        scrollEvent={this.scrollEvent}
         renderBackground={() => (
           <View key="background">
             <Image
-              source={require("../../assets/mbbg.jpg")}
+              source={require("../../assets/bannersky.jpg")}
               style={{
                 width: window.width,
                 height: PARALLAX_HEADER_HEIGHT
@@ -42,7 +46,6 @@ class DashBoard extends React.Component {
                 width: window.width,
                 height: PARALLAX_HEADER_HEIGHT
               }}
-              AAAA
             />
           </View>
         )}
@@ -64,7 +67,7 @@ class DashBoard extends React.Component {
                   style={{ width: 26, height: 26 }}
                 ></Image>
               </View>
-              <Text style={styles.menuText}>Calendar</Text>
+              <Text style={styles.menuText}>News</Text>
             </View>
             <View style={styles.menu}>
               <View style={styles.menuImg}>
@@ -73,7 +76,7 @@ class DashBoard extends React.Component {
                   style={{ width: 26, height: 26 }}
                 ></Image>
               </View>
-              <Text style={styles.menuText}>Calendar</Text>
+              <Text style={styles.menuText}>Campaigns</Text>
             </View>
             <View style={styles.menu}>
               <View style={styles.menuImg}>
@@ -82,29 +85,55 @@ class DashBoard extends React.Component {
                   style={{ width: 26, height: 26 }}
                 ></Image>
               </View>
-              <Text style={styles.menuText}>Calendar</Text>
+              <Text style={styles.menuText}>Premiums</Text>
             </View>
           </View>
         )}
         renderStickyHeader={() => (
           <View key="sticky-header" style={styles.stickySection}>
-            <Text style={styles.stickySectionText}>Hello Quang Dung</Text>
+            {/* <View style={{ flexDirection: "row" }}>
+              <Icon name="calendar" size={18} color="#fff" light />
+              <Icon name="calendar" size={18} color="#fff" light />
+              <Icon name="calendar" size={18} color="#fff" light />
+              <Icon name="calendar" size={18} color="#fff" light />
+            </View> */}
           </View>
         )}
         renderFixedHeader={() => (
           <View key="fixed-header" style={styles.fixedSection}>
-            <Text
-              style={styles.fixedSectionText}
-              onPress={() => this.refs.ListView.scrollTo({ x: 0, y: 0 })}
-            >
-              <Icon name="bell" size={18} color="#fff" light />
-            </Text>
-            <Text
-              style={(styles.fixedSectionText, { marginLeft: 25 })}
-              onPress={() => this.refs.ListView.scrollTo({ x: 0, y: 0 })}
-            >
-              <Icon name="power-off" size={18} color="#fff" light />
-            </Text>
+            <View style={{ flexDirection: "row", marginLeft: 10 }}>
+              <Text style={{ color: "#fff" }}>Hello,</Text>
+              <Text style={{ fontWeight: "600", color: "#fff" }}>
+                {" "}
+                Quang Dũng
+              </Text>
+            </View>
+            <View style={{ justifyContent: "centr", flexDirection: "row" }}>
+              <Text style={styles.fixedSectionText}>
+                <Icon name="search" size={18} color="#fff" light />
+              </Text>
+              <View
+                style={
+                  (styles.fixedSectionText,
+                  { marginLeft: 30, position: "relative" })
+                }
+              >
+                <Icon name="bell" size={18} color="#fff" light />
+                <Badge
+                  value="99+"
+                  status="error"
+                  containerStyle={{
+                    position: "absolute",
+                    bottom: 12,
+                    left: 8,
+                    width: 30
+                  }}
+                />
+              </View>
+              <Text style={(styles.fixedSectionText, { marginLeft: 30 })}>
+                <Icon name="power-off" size={18} color="#fff" light />
+              </Text>
+            </View>
           </View>
         )}
       >
@@ -131,14 +160,17 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     width: window.width,
-    height: PARALLAX_HEADER_HEIGHT
+    height: PARALLAX_HEADER_HEIGHT,
+    zIndex: 1
   },
   stickySection: {
     height: STICKY_HEADER_HEIGHT,
     width: window.width,
-    position: "relative",
-    justifyContent: "center"
-    // backgroundColor: "rgba(0,0,0,0.5)"
+    position: "absolute",
+    justifyContent: "center",
+    backgroundColor: "#1C5FBF",
+    opacity: 0.4,
+    zIndex: 10000
   },
   stickySectionText: {
     color: "white",
@@ -151,9 +183,10 @@ const styles = StyleSheet.create({
     width: window.width,
     flexDirection: "row",
     backgroundColor: "rgba(0,0,20,0.5)",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     alignItems: "center",
-    paddingRight: 10
+    paddingRight: 10,
+    zIndex: 1
   },
   fixedSectionText: {
     color: "#999",

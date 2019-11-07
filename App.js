@@ -96,7 +96,8 @@ const AppStack = createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: "#349AD0",
       inactiveTintColor: "gray"
-    }
+    },
+    initialRouteName: "Leads"
   }
 );
 const AuthStack = createStackNavigator({
